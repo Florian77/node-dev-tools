@@ -12,7 +12,7 @@ module.exports.error = error;
 const jsonString = v => JSON.stringify(v, null, 2);
 module.exports.stringify = jsonString;
 
-const logJsonString = (d, name=undefined) => log(jsonString(s), name);
+const logJsonString = (d, name=undefined) => log(jsonString(d), name);
 module.exports.logJsonString = logJsonString;
 
 const logJsonStringHead = (d, name=undefined) => {
