@@ -1,6 +1,6 @@
 'use strict';
 
-const {mongo} = require('mongo');
+const {mongo} = require('./mongo');
 module.exports.mongo = mongo;
 
 const log = console.log.bind(console);
