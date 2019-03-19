@@ -9,12 +9,19 @@ module.exports.error = error;
 const jsonString = v => JSON.stringify(v, null, 2);
 module.exports.jsonString = jsonString;
 
-const logJsonString = (d, name=undefined) => log(jsonString(d), name);
+const logJsonString = (d, name=false) =>
+    name === false
+        ? log(jsonString(d))
+        : log(name, jsonString(d))
+;
 module.exports.logJsonString = logJsonString;
 
-const logJsonStringHead = (d, name=undefined) => {
-    logJsonString(Array.isArray(d) ? d[0] : d, name);
-};
+const logJsonStringHead = (d, name=false) =>
+    name === false
+        ? logJsonString(Array.isArray(d) ? d[0] : d)
+        : logJsonString(Array.isArray(d) ? d[0] : d, name)
+;
+
 module.exports.logJsonStringHead = logJsonStringHead;
 
 
