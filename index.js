@@ -21,8 +21,11 @@ module.exports.logJsonStringHead = logJsonStringHead;
 // Mongo DB result helper
 module.exports.mongo = {};
 
-const logDeleteMany = (result, name='') => log( `deleteMany(${name})`, 'result:', result.result.ok, 'count:', result.result.n );
+const logDeleteMany = (result, name='') => log( `mongo.deleteMany(${name})`, 'result:', result.result.ok, 'count:', result.result.n );
 module.exports.mongo.logDeleteMany = logDeleteMany;
 
-const logInsertMany = (result, name='') => log( `insertMandy(${name})`, 'result:', result.result.ok, 'count:', result.insertedCount );
+const logInsertMany = (result, name='') => log( `mongo.insertMandy(${name})`, 'result:', result.result.ok, 'insertedCount:', result.insertedCount );
 module.exports.mongo.logInsertMany = logInsertMany;
+
+const logUpdateMany = (result, name='') => log( `mongo.updateMany(${name})`, 'result:', result.result.ok, 'matchedCount:', result.matchedCount, 'modifiedCount:', result.modifiedCount );
+module.exports.mongo.logUpdateMany = logUpdateMany;
