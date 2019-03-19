@@ -20,12 +20,26 @@ module.exports.logJsonStringHead = logJsonStringHead;
 
 // Mongo DB result helper
 module.exports.mongo = {};
+const mongoCheckResult = (result) => result.result && result.result.ok && result.result.ok === 1 ? 'success' : 'error';
 
-const logDeleteMany = (result, name='') => log( `mongo.deleteMany(${name})`, 'result:', result.result.ok, 'count:', result.result.n );
+const logDeleteMany = (result, name='') => log(
+    `mongo.deleteMany(${name})`,
+    'result:', mongoCheckResult(result),
+    'count:', result && result.deletedCount  ? result.deletedCount  : 'error'
+);
 module.exports.mongo.logDeleteMany = logDeleteMany;
 
-const logInsertMany = (result, name='') => log( `mongo.insertMandy(${name})`, 'result:', result.result.ok, 'insertedCount:', result.insertedCount );
+const logInsertMany = (result, name='') => log(
+    `mongo.insertMandy(${name})`,
+    'result:', mongoCheckResult(result),
+    'insertedCount:', result && result.insertedCount ? result.insertedCount : 'error'
+);
 module.exports.mongo.logInsertMany = logInsertMany;
 
-const logUpdateMany = (result, name='') => log( `mongo.updateMany(${name})`, 'result:', result.result.ok, 'matchedCount:', result.matchedCount, 'modifiedCount:', result.modifiedCount );
+const logUpdateMany = (result, name='') => log(
+    `mongo.updateMany(${name})`,
+    'result:', mongoCheckResult(result),
+    'matchedCount:', result && result.matchedCount ? result.matchedCount : 'error' ,
+    'modifiedCount:', result && result.modifiedCount  ? result.modifiedCount  : 'error'
+);
 module.exports.mongo.logUpdateMany = logUpdateMany;
