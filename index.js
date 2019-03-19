@@ -27,26 +27,26 @@ module.exports.logJsonStringHead = logJsonStringHead;
 
 // Mongo DB result helper
 module.exports.mongo = {};
-const mongoCheckResult = (result) => result.result && result.result.ok && result.result.ok === 1 ? 'success' : 'error';
+const mongoCheckResult = (result) => result.result && result.result.ok && result.result.ok === 1 ? 'OK' : 'ERROR';
 
 const logDeleteMany = (result, name='') => log(
     `mongo.deleteMany(${name})`,
     'result:', mongoCheckResult(result),
-    'count:', result && result.deletedCount  ? result.deletedCount  : 'error'
+    'count:', result && result.deletedCount  ? result.deletedCount  : 'ERROR'
 );
 module.exports.mongo.logDeleteMany = logDeleteMany;
 
 const logInsertMany = (result, name='') => log(
     `mongo.insertMandy(${name})`,
     'result:', mongoCheckResult(result),
-    'insertedCount:', result && result.insertedCount ? result.insertedCount : 'error'
+    'insertedCount:', result && result.insertedCount ? result.insertedCount : 'ERROR'
 );
 module.exports.mongo.logInsertMany = logInsertMany;
 
 const logUpdateMany = (result, name='') => log(
     `mongo.updateMany(${name})`,
     'result:', mongoCheckResult(result),
-    'matchedCount:', result && result.matchedCount ? result.matchedCount : 'error' ,
-    'modifiedCount:', result && result.modifiedCount  ? result.modifiedCount  : 'error'
+    'matchedCount:', result && result.matchedCount ? result.matchedCount : 'ERROR' ,
+    'modifiedCount:', result && result.modifiedCount  ? result.modifiedCount  : 'ERROR'
 );
 module.exports.mongo.logUpdateMany = logUpdateMany;
