@@ -32,21 +32,21 @@ const mongoCheckResult = (result) => result.result && result.result.ok && result
 const logDeleteMany = (result, name='') => log(
     `mongo.deleteMany(${name})`,
     'result:', mongoCheckResult(result),
-    'count:', result && result.deletedCount  ? result.deletedCount  : 'ERROR'
+    'count:', result && result.deletedCount >= 0 ? result.deletedCount  : 'ERROR'
 );
 module.exports.mongo.logDeleteMany = logDeleteMany;
 
 const logInsertMany = (result, name='') => log(
     `mongo.insertMandy(${name})`,
     'result:', mongoCheckResult(result),
-    'insertedCount:', result && result.insertedCount ? result.insertedCount : 'ERROR'
+    'insertedCount:', result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR'
 );
 module.exports.mongo.logInsertMany = logInsertMany;
 
 const logUpdateMany = (result, name='') => log(
     `mongo.updateMany(${name})`,
     'result:', mongoCheckResult(result),
-    'matchedCount:', result && result.matchedCount ? result.matchedCount : 'ERROR' ,
-    'modifiedCount:', result && result.modifiedCount  ? result.modifiedCount  : 'ERROR'
+    'matchedCount:', result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR' ,
+    'modifiedCount:', result && result.modifiedCount >= 0 ? result.modifiedCount  : 'ERROR'
 );
 module.exports.mongo.logUpdateMany = logUpdateMany;
