@@ -27,26 +27,61 @@ module.exports.logJsonStringHead = logJsonStringHead;
 
 // Mongo DB result helper
 module.exports.mongo = {};
-const mongoCheckResult = (result) => result.result && result.result.ok && result.result.ok === 1 ? 'OK' : 'ERROR';
 
-const logDeleteMany = (result, name='') => log(
-    `mongo.deleteMany(${name})`,
-    'result:', mongoCheckResult(result),
+const mongoCheckResult = (result) => result.result && result.result.ok && result.result.ok === 1;
+module.exports.mongo.checkResult = mongoCheckResult;
+
+const mongoResultName = (result) => mongoCheckResult(result) ? 'OK' : 'ERROR';
+module.exports.mongo.resultName = mongoResultName;
+
+const logDeleteMany = (result, name='', fullName=false) => log(
+    fullName ? name : `mongo.deleteMany(${name})`,
+    'result:', mongoResultName(result),
     'count:', result && result.deletedCount >= 0 ? result.deletedCount  : 'ERROR'
 );
 module.exports.mongo.logDeleteMany = logDeleteMany;
 
-const logInsertMany = (result, name='') => log(
-    `mongo.insertMandy(${name})`,
-    'result:', mongoCheckResult(result),
+const logInsertMany = (result, name='', fullName=false) => log(
+    fullName ? name : `mongo.insertMandy(${name})`,
+    'result:', mongoResultName(result),
     'insertedCount:', result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR'
 );
 module.exports.mongo.logInsertMany = logInsertMany;
 
-const logUpdateMany = (result, name='') => log(
-    `mongo.updateMany(${name})`,
-    'result:', mongoCheckResult(result),
+const logUpdateMany = (result, name='', fullName=false) => log(
+    fullName ? name : `mongo.updateMany(${name})`,
+    'result:', mongoResultName(result),
     'matchedCount:', result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR' ,
     'modifiedCount:', result && result.modifiedCount >= 0 ? result.modifiedCount  : 'ERROR'
 );
 module.exports.mongo.logUpdateMany = logUpdateMany;
+
+
+const logDeleteOne = (result, name='', fullName=false) => log(
+    fullName ? name : `mongo.deleteOne(${name})`,
+    'result:', mongoResultName(result),
+    'count:', result && result.deletedCount >= 0 ? result.deletedCount  : 'ERROR'
+);
+module.exports.mongo.logDeleteOne = logDeleteOne;
+
+const logInsertOne = (result, name='', fullName=false) => log(
+    fullName ? name : `mongo.insertMandy(${name})`,
+    'result:', mongoResultName(result),
+    'insertedCount:', result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR'
+);
+module.exports.mongo.logInsertOne = logInsertOne;
+
+const logReplaceOne = (result, name='', fullName=false) => log(
+    fullName ? name : `mongo.replaceOne(${name})`,
+    'result:', mongoResultName(result),
+    'insertedCount:', result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR'
+);
+module.exports.mongo.logReplaceOne = logReplaceOne;
+
+const logUpdateOne = (result, name='', fullName=false) => log(
+    fullName ? name : `mongo.updateOne(${name})`,
+    'result:', mongoResultName(result),
+    'matchedCount:', result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR' ,
+    'modifiedCount:', result && result.modifiedCount >= 0 ? result.modifiedCount  : 'ERROR'
+);
+module.exports.mongo.logUpdateOne = logUpdateOne;
