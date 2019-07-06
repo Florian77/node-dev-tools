@@ -3,6 +3,12 @@
 const log = console.log.bind(console);
 module.exports.log = log;
 
+const ramdaLog = name => d => {
+    log(String(name), d);
+    return d;
+};
+module.exports.ramdaLog = ramdaLog;
+
 const error = console.error.bind(console);
 module.exports.error = error;
 
@@ -16,16 +22,26 @@ const logJsonString = (d, name=false) =>
 ;
 module.exports.logJsonString = logJsonString;
 
+const ramdaLogJsonString = name => d => {
+    log(String(name), jsonString(d));
+    return d;
+};
+module.exports.ramdaLogJsonString = ramdaLogJsonString;
+
 const logJsonStringHead = (d, name=false) =>
     name === false
         ? logJsonString(Array.isArray(d) ? d[0] : d)
         : logJsonString(Array.isArray(d) ? d[0] : d, name)
 ;
-
 module.exports.logJsonStringHead = logJsonStringHead;
 
+const ramdaLogJsonStringHead = name => d => {
+    log(String(name), jsonString(Array.isArray(d) ? d[0] : d));
+    return d;
+};
+module.exports.ramdaLogJsonStringHead = ramdaLogJsonStringHead;
 
-// Mongo DB result helper
+// Mongo DB result helper //
 module.exports.mongo = {};
 
 const mongoCheckResult = (result) => result.result && result.result.ok && result.result.ok === 1;
