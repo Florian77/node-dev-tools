@@ -83,6 +83,7 @@ const mongoUpdateMany = (result) =>
     'result:' + mongoResultName(result)
     + 'matchedCount:' + (result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR')
     + 'modifiedCount:' + (result && result.modifiedCount >= 0 ? result.modifiedCount : 'ERROR')
+    + (result && result.upsertedCount >= 0 ? ' upsertedCount: ' + result.upsertedCount : "")
 ;
 module.exports.mongoUpdateMany = mongoUpdateMany;
 
@@ -118,6 +119,7 @@ module.exports.mongoLogInsertOne = mongoLogInsertOne;
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoReplaceOne = (result) =>
     'result: ' + mongoResultName(result)
+    + ' matchedCount: ' + (result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR')
     + ' modifiedCount: ' + (result && result.modifiedCount >= 0 ? result.modifiedCount : 'ERROR')
     + (result && result.upsertedCount >= 0 ? ' upsertedCount: ' + result.upsertedCount : "")
 ;
