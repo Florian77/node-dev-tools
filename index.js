@@ -56,8 +56,8 @@ module.exports.mongoResultName = mongoResultName;
 
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoDeleteMany = (result) =>
-    'result: ' + mongoResultName(result) +
-    ' count: ' + (result && result.deletedCount >= 0 ? result.deletedCount : 'ERROR')
+    'result: ' + mongoResultName(result)
+    + ' count: ' + (result && result.deletedCount >= 0 ? result.deletedCount : 'ERROR')
 ;
 module.exports.mongoDeleteMany = mongoDeleteMany;
 
@@ -68,8 +68,8 @@ module.exports.mongoLogDeleteMany = mongoLogDeleteMany;
 
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoInsertMany = (result) =>
-    'result: ' + mongoResultName(result) +
-    ' insertedCount: ' + (result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR')
+    'result: ' + mongoResultName(result)
+    + ' insertedCount: ' + (result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR')
 ;
 module.exports.mongoInsertMany = mongoInsertMany;
 
@@ -80,9 +80,9 @@ module.exports.mongoLogInsertMany = mongoLogInsertMany;
 
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoUpdateMany = (result) =>
-    'result:' + mongoResultName(result) +
-    'matchedCount:' + (result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR') +
-    'modifiedCount:' + (result && result.modifiedCount >= 0 ? result.modifiedCount : 'ERROR')
+    'result:' + mongoResultName(result)
+    + 'matchedCount:' + (result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR')
+    + 'modifiedCount:' + (result && result.modifiedCount >= 0 ? result.modifiedCount : 'ERROR')
 ;
 module.exports.mongoUpdateMany = mongoUpdateMany;
 
@@ -93,8 +93,8 @@ module.exports.mongoLogUpdateMany = mongoLogUpdateMany;
 
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoDeleteOne = (result) =>
-    'result: ' + mongoResultName(result) +
-    ' count: ' + (result && result.deletedCount >= 0 ? result.deletedCount : 'ERROR')
+    'result: ' + mongoResultName(result)
+    + ' count: ' + (result && result.deletedCount >= 0 ? result.deletedCount : 'ERROR')
 ;
 module.exports.mongoDeleteOne = mongoDeleteOne;
 
@@ -105,8 +105,8 @@ module.exports.mongoLogDeleteOne = mongoLogDeleteOne;
 
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoInsertOne = (result) =>
-    'result: ' + mongoResultName(result) +
-    ' insertedCount: ' + (result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR')
+    'result: ' + mongoResultName(result)
+    + ' insertedCount: ' + (result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR')
 ;
 module.exports.mongoInsertOne = mongoInsertOne;
 
@@ -117,8 +117,9 @@ module.exports.mongoLogInsertOne = mongoLogInsertOne;
 
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoReplaceOne = (result) =>
-    'result: ' + mongoResultName(result) +
-    ' insertedCount: ' + (result && result.insertedCount >= 0 ? result.insertedCount : 'ERROR')
+    'result: ' + mongoResultName(result)
+    + ' modifiedCount: ' + (result && result.modifiedCount >= 0 ? result.modifiedCount : 'ERROR')
+    + (result && result.upsertedCount >= 0 ? ' upsertedCount: ' + result.upsertedCount : "")
 ;
 module.exports.mongoReplaceOne = mongoReplaceOne;
 
@@ -129,9 +130,10 @@ module.exports.mongoLogReplaceOne = mongoLogReplaceOne;
 
 // --------------------------------------------------------------------------------------------------------------------------------------
 const mongoUpdateOne = (result) =>
-    'result: ' + mongoResultName(result) +
-    ' matchedCount: ' + (result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR') +
-    ' modifiedCount: ' + (result && result.modifiedCount >= 0 ? result.modifiedCount : 'ERROR')
+    'result: ' + mongoResultName(result)
+    + ' matchedCount: ' + (result && result.matchedCount >= 0 ? result.matchedCount : 'ERROR')
+    + ' modifiedCount: ' + (result && result.modifiedCount >= 0 ? result.modifiedCount : 'ERROR')
+    + (result && result.upsertedCount >= 0 ? ' upsertedCount: ' + result.upsertedCount : "")
 ;
 module.exports.mongoUpdateOne = mongoUpdateOne;
 
