@@ -15,6 +15,9 @@ module.exports.error = error;
 const jsonString = v => JSON.stringify(v, null, 2);
 module.exports.jsonString = jsonString;
 
+const jsonStringHead = d => jsonString(Array.isArray(d) ? d[0] : d);
+module.exports.jsonStringHead = jsonStringHead;
+
 const logJsonString = (d, name = false) =>
     name === false
         ? log(jsonString(d))
